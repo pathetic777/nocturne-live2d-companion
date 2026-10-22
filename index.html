@@ -415,16 +415,24 @@
     </div>
     <div class="action-bar">
       <button class="btn" id="btn-wave" onclick="triggerWave()">👋 Wave Hello</button>
-      <button class="btn active" id="btn-top-star" style="background:linear-gradient(135deg,#f59e0b,#ec4899);box-shadow:0 0 14px rgba(245,158,11,0.55);" onclick="openStarModal()">⭐ Give a Free Star / ❤️ スキで応援</button>
+      <button class="btn active" id="btn-top-star" style="background:linear-gradient(135deg,#f59e0b,#ec4899);box-shadow:0 0 14px rgba(245,158,11,0.55);" onclick="openStarModal()">⭐ Free Star / ❤️ Support</button>
       <a class="btn" id="btn-top-full" href="https://nocturne-live2d.booth.pm/items/9027370" target="_blank" style="text-decoration:none;border-color:#c59bff;color:#f5d0fe;">💎 Full Edition (2,000 JPY)</a>
-      
-      
+      <button class="btn" id="btn-doll" style="display:none" onclick="triggerDollPlay()">🧸 Play with Ragdoll</button>
+      <button class="btn active" id="btn-autostart" style="display:none" onclick="toggleAutoStart()">🚀 Auto-Start: ON ✅</button>
       <button class="btn" id="btn-compact" onclick="toggleCompactMode()">📐 Compact Mode</button>
     </div>
     <div class="bg-bar" style="flex-wrap:wrap; max-width:680px;">
       <span style="font-size:11.5px; color:#d8b4fe; padding:3px 6px;" id="mvu-live-indicator">🎭 Expression (MVU):</span>
-      <button class="btn active" id="mvu-neutral" onclick="setMvuExpr('neutral')">1.Neutral (Calm)</button>
-      <button class="btn" id="btn-locked-exprs" style="opacity:0.75;border-color:#f472b6;" onclick="openStarModal()">🔒 2~9 Expressions (Unlock in Full Edition)</button>
+      <button class="btn active" id="mvu-neutral" onclick="setMvuExpr('neutral')">1.Neutral</button>
+      <button class="btn" id="mvu-shy" style="display:none" onclick="setMvuExpr('shy')">2.Shy</button>
+      <button class="btn" id="mvu-angry" style="display:none" onclick="setMvuExpr('angry')">3.Angry💢</button>
+      <button class="btn" id="mvu-scared" style="display:none" onclick="setMvuExpr('scared')">4.Scared</button>
+      <button class="btn" id="mvu-touched" style="display:none" onclick="setMvuExpr('touched')">5.Touched</button>
+      <button class="btn" id="mvu-smug" style="display:none" onclick="setMvuExpr('smug')">6.Smug:3</button>
+      <button class="btn" id="mvu-happy" style="display:none" onclick="setMvuExpr('happy')">7.Happy</button>
+      <button class="btn" id="mvu-sad" style="display:none" onclick="setMvuExpr('sad')">8.Sad</button>
+      <button class="btn" id="mvu-surprised" style="display:none" onclick="setMvuExpr('surprised')">9.Surprised</button>
+      <button class="btn" id="btn-locked-exprs" style="opacity:0.85;border-color:#f472b6;" onclick="openStarModal()">🔒 2~9 Expressions (Full Edition)</button>
     </div>
     <div class="bg-bar">
       <button class="btn active" id="bg-dark" onclick="setStageBg('dark')">🌙 Dark Stage</button>
@@ -434,7 +442,7 @@
   </div>
 
   <!-- Hidden Easter Egg Emergency 20s Shutdown/Restart Mercy Modal -->
-  <div class="power-alert" id="power-alert">
+  <div class="power-alert" id="power-alert" style="display:none !important">
     <div class="power-title" id="power-title">⚠️ System Shutdown Penalty Triggered!</div>
     <div style="font-size:13px; color:#ffd6e0;" id="power-sub">
       "You poked me 5 times in a row! Apologize within 20 seconds or I'll shut down your PC!"
@@ -448,7 +456,6 @@
   </div>
 
   
-  <!-- Every-Time-Open Free Star / Heart Support Modal -->
   <div id="star-support-modal" style="position:fixed;inset:0;z-index:99999;background:rgba(10,11,18,0.82);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:16px;">
     <div style="max-width:520px;width:100%;background:linear-gradient(160deg,rgba(28,25,46,0.98),rgba(18,16,30,0.98));border:2px solid #c59bff;border-radius:20px;padding:26px 28px;box-shadow:0 20px 60px rgba(0,0,0,0.75),0 0 35px rgba(197,155,255,0.35);display:flex;flex-direction:column;gap:15px;text-align:center;">
       <div style="display:flex;justify-content:space-between;align-items:center;">
@@ -462,11 +469,11 @@
         ⭐ Would You Give a Free Star to Support the Creator?
       </div>
       <div style="font-size:13.5px;color:#dfd7f7;line-height:1.6;background:rgba(255,255,255,0.04);padding:12px 15px;border-radius:12px;border-left:3px solid #f472b6;text-align:left;" id="modal-msg">
-        "...Since you're playing my Free Trial Lite for $0, would you mind taking 2 seconds to click a <b>free ⭐ Star on GitHub</b> or <b>❤️ Like (スキ) on BOOTH</b>? Most people download without liking—your free star really helps my creator!"
+        "...Since you're trying my Free Trial Lite for $0, would you mind taking 2 seconds to click a <b>free ⭐ Star on GitHub</b> or <b>❤️ Like (スキ) on BOOTH</b>? Most people download without liking—your free star means the world to my creator!"
       </div>
       <div style="display:flex;flex-direction:column;gap:9px;margin-top:2px;">
         <a href="https://github.com/pathetic777/nocturne-live2d-companion" target="_blank" id="modal-btn-gh" style="text-decoration:none;background:linear-gradient(135deg,#f59e0b,#ea580c);color:#fff;padding:12px 18px;border-radius:12px;font-size:14px;font-weight:700;box-shadow:0 6px 20px rgba(245,158,11,0.4);display:block;">
-          ⭐ Give a Free Star on GitHub (Takes 2 Seconds!)
+          ⭐ Give a Free Star on GitHub (100% Free Support!)
         </a>
         <a href="https://nocturne-live2d.booth.pm/items/9027923" target="_blank" id="modal-btn-booth-heart" style="text-decoration:none;background:linear-gradient(135deg,#ec4899,#db2777);color:#fff;padding:11px 18px;border-radius:12px;font-size:13.5px;font-weight:700;box-shadow:0 6px 18px rgba(236,72,153,0.35);display:block;">
           ❤️ Click a Free Heart (スキ) on BOOTH (0 JPY Page)
@@ -475,7 +482,7 @@
           💎 Unlock Full Edition (All 9 Expressions + File-Eating + 2nd Form — 2,000 JPY)
         </a>
         <a href="https://ko-fi.com/282831/commissions" target="_blank" id="modal-btn-kofi" style="text-decoration:none;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.18);color:#cbd5e1;padding:8px 14px;border-radius:10px;font-size:12px;display:block;">
-          🎨 Custom Live2D Companion from Your Art ($15~$25 on Ko-fi)
+          🎨 Commission Your Own Character as a Live2D Companion ($15~$25)
         </a>
       </div>
       <button onclick="closeStarModal()" id="modal-btn-close" style="margin-top:4px;background:transparent;border:1px solid rgba(197,155,255,0.35);color:#c4b5fd;padding:9px 16px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;">
@@ -487,9 +494,15 @@
   <canvas id="pet-canvas" width="1024" height="1024"></canvas>
 
   <div class="feed-dock" style="flex-wrap:wrap; justify-content:center; max-width:92%;">
-    
-    
-    
+    <div class="feed-item" style="display:none" data-food="cookie" onmousedown="startFoodDrag(event, 'cookie', '🍪')" onclick="quickFeed('cookie')">
+      <span>🍪</span><span id="lbl-food-cookie">Dark Cookie</span>
+    </div>
+    <div class="feed-item" style="display:none" data-food="tea" onmousedown="startFoodDrag(event, 'tea', '☕')" onclick="quickFeed('tea')">
+      <span>☕</span><span id="lbl-food-tea">Earl Grey Tea</span>
+    </div>
+    <div class="feed-item" style="display:none" data-food="paper" onmousedown="startFoodDrag(event, 'paper', '📄')" onclick="quickFeed('paper')">
+      <span>📄</span><span id="lbl-food-paper">Scrap File</span>
+    </div>
     <input type="text" id="quick-chat-input" placeholder="💬 Talk to her (Press Enter)..." style="width:230px; padding:5px 12px; border-radius:99px; font-size:12px;" onkeydown="if(event.key==='Enter'){document.getElementById('chat-input').value=this.value;this.value='';sendChat();}" />
   </div>
 </div>
@@ -632,7 +645,7 @@ let currentLang = 'en';
 
 const I18N = {
   en: {
-    badgeTitle: '✨ 2D Live Interactive Desktop Companion',
+    badgeTitle: '✨ Nocturne 2D Live — Free Trial Lite (EN/JA)',
     btnWave: '👋 Wave Hello',
     btnDoll: '🧸 Play with Ragdoll',
     btnAutostartOn: '🚀 Auto-Start: ON ✅',
@@ -694,7 +707,7 @@ const I18N = {
     btnExportJson: '💾 Export',
     mvuPromptTitle: '🎭 Channel 2: MVU Expression Controller Prompt',
     btnSavePersona: '✅ Apply & Save Persona Settings',
-    bubbleInit: "...Move your cursor anywhere and my eyes—and my button-eyed doll's eyes—will follow you. Drag unwanted files to my doll to toss them into the Recycle Bin :)",
+    bubbleInit: "...Move your cursor and my eyes will follow you! Click [Wave Hello] or connect your LLM API & TTS on the right. If you like me, please click [⭐ Free Star] at the top to support my creator!",
     bubbleWave: "Hello there... Did you notice my eyes following your cursor? :)",
     bubbleDoll: "(The button-eyed ragdoll tilts its stitched head and wiggles its little boots~)",
     bubbleHead: "Hey... don't mess up my star hairclip :)",
@@ -726,7 +739,7 @@ neutral, shy, angry, scared, touched, smug, happy, sad, surprised.
 Output ONLY the single tag such as <<mvu:set_expr("shy")>> with zero extra text.`
   },
   ja: {
-    badgeTitle: '✨ 2D Live インタラクティブ・デスクトップメイト',
+    badgeTitle: '✨ ノクターン 2D Live — 無料体験版 Lite (EN/JA)',
     btnWave: '👋 手を振る',
     btnDoll: '🧸 人形と遊ぶ',
     btnAutostartOn: '🚀 自動起動: ON ✅',
@@ -788,7 +801,7 @@ Output ONLY the single tag such as <<mvu:set_expr("shy")>> with zero extra text.
     btnExportJson: '💾 保存',
     mvuPromptTitle: '🎭 第2チャンネル: MVU 表情制御システムプロンプト',
     btnSavePersona: '✅ 設定を適用して保存',
-    bubbleInit: '……マウスを動かしてみて。私と人形のボタンの目があなたを追いかけるわ。不要なファイルを人形にドロップすればゴミ箱に片付けるわよ :)',
+    bubbleInit: '……マウスを動かしてみて、視線があなたを追いかけるわ！「手を振る」やLLM API・TTS音声対話を試してみてね。気に入ったら上の「⭐無料Star / ❤️スキ」で作者を応援してね！',
     bubbleWave: 'こんにちは……私の視線がマウスを追っているの、わかる？ :)',
     bubbleDoll: '（腕の中のボタンの目の人形が首をかしげて、小さなブーツを揺らした〜）',
     bubbleHead: 'ちょっと……星のヘアピンに触らないで、髪が乱れるじゃない :)',
@@ -820,6 +833,54 @@ neutral, shy, angry, scared, touched, smug, happy, sad, surprised
 説明は一切出力せず、<<mvu:set_expr("shy")>> のようなコード1行のみを出力してください。`
   }
 };
+
+
+function openStarModal() {
+  const m = document.getElementById('star-support-modal');
+  if (m) m.style.display = 'flex';
+}
+function closeStarModal() {
+  const m = document.getElementById('star-support-modal');
+  if (m) m.style.display = 'none';
+}
+function updateStarModalLang() {
+  const isJa = currentLang === 'ja';
+  const elEn = document.getElementById('modal-lang-en');
+  const elJa = document.getElementById('modal-lang-ja');
+  if (elEn) elEn.classList.toggle('active', !isJa);
+  if (elJa) elJa.classList.toggle('active', isJa);
+
+  const setTxt = (id, t) => { const e = document.getElementById(id); if (e) e.textContent = t; };
+  const setHtml = (id, h) => { const e = document.getElementById(id); if (e) e.innerHTML = h; };
+
+  setTxt('modal-badge', isJa ? '🎁 無料体験版 Lite (0 JPY)' : '🎁 Free Trial Lite Edition (0 JPY)');
+  setTxt('modal-title', isJa
+    ? '⭐ 無料の「Star / スキ」で作者を応援してくれませんか？'
+    : '⭐ Would You Give a Free Star to Support the Creator?');
+  setHtml('modal-msg', isJa
+    ? '「……この無料体験版を起動してくれてありがとう！多くの人がダウンロードするだけで通り過ぎてしまうの。もし気に入ったら、<b>GitHub の無料 ⭐Star</b> か <b>BOOTH の無料 ❤️スキ</b> をポチッと押して作者を応援してくれないかしら？」'
+    : '"...Since you\'re trying my Free Trial Lite for $0, would you mind taking 2 seconds to click a <b>free ⭐ Star on GitHub</b> or <b>❤️ Like (スキ) on BOOTH</b>? Most people download without liking—your free star means the world to my creator!"');
+  setTxt('modal-btn-gh', isJa
+    ? '⭐ GitHub で無料の Star を押して応援する（登録・料金0円）'
+    : '⭐ Give a Free Star on GitHub (100% Free Support!)');
+  setTxt('modal-btn-booth-heart', isJa
+    ? '❤️ BOOTH で無料の「スキ (ハート)」を押して応援する'
+    : '❤️ Click a Free Heart (スキ) on BOOTH (0 JPY Page)');
+  setTxt('modal-btn-full', isJa
+    ? '💎 完全版 (2,000円) を入手（全9種表情＋ファイル捕食＋隠し第2形態＋シャットダウン演出）'
+    : '💎 Unlock Full Edition (All 9 Expressions + File-Eating + 2nd Form — 2,000 JPY)');
+  setTxt('modal-btn-kofi', isJa
+    ? '🎨 あなたのイラストを同じ仕様のデスクトップマスコットに制作依頼 ($15〜$25)'
+    : '🎨 Commission Your Own Character as a Live2D Companion ($15~$25)');
+  setTxt('modal-btn-close', isJa
+    ? '▶️ 無料体験版をはじめる ->'
+    : '▶️ Continue to Free Trial Lite ->');
+
+  setTxt('btn-top-star', isJa ? '⭐ 無料Star / ❤️ スキで応援' : '⭐ Free Star / ❤️ Support');
+  setTxt('btn-top-full', isJa ? '💎 完全版 (2,000 JPY)' : '💎 Full Edition (2,000 JPY)');
+  setTxt('btn-locked-exprs', isJa ? '🔒 2〜9 表情差分 (完全版で解放)' : '🔒 2~9 Expressions (Full Edition)');
+  setTxt('mvu-neutral', isJa ? '1.クール (初期表情)' : '1.Neutral (Calm)');
+}
 
 function setLanguage(lang) {
   currentLang = (lang === 'ja') ? 'ja' : 'en';
@@ -901,6 +962,7 @@ function setLanguage(lang) {
 
   document.getElementById('persona-json').value = t.defaultPersona;
   document.getElementById('mvu-sys-prompt').value = t.defaultMvuPrompt;
+  updateStarModalLang();
   showBubble(t.bubbleInit);
   fetch(BACKEND_BASE + '/api/save_config', {
     method: 'POST',
@@ -931,24 +993,7 @@ function drawMvuExpr(exprKey, dx, dy, rotDeg) {
   ctx.restore();
 }
 
-function setMvuExpr(exprKey) {
-  if (!MVU_EXPR_DATA[exprKey]) exprKey = 'neutral';
-  currentMvuExpr = exprKey;
-  MVU_VALID_LIST.forEach(k => {
-    const b = document.getElementById('mvu-' + k);
-    if (b) b.classList.toggle('active', k === exprKey);
-  });
-  const ind = document.getElementById('mvu-live-indicator');
-  const t = I18N[currentLang];
-  if (ind) {
-    ind.textContent = `${t.mvuLabel} ${t.exprNames[exprKey] || exprKey}`;
-  }
-  fetch(BACKEND_BASE + '/api/set_expression', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({expression: exprKey})
-  }).catch(() => {});
-}
+function setMvuExpr(exprKey) { currentMvuExpr = 'neutral'; }
 
 function regexParseMvuOutput(rawOutput, fallbackText='') {
   const txt = (rawOutput || '').trim();
@@ -1212,98 +1257,15 @@ function completeFeed(foodType, target) {
 }
 
 const stageWrap = document.getElementById('stage-wrap');
-stageWrap.addEventListener('dragover', e => {
-  e.preventDefault();
-  state.dollEatTimer = Math.max(state.dollEatTimer, 0.4);
-});
-stageWrap.addEventListener('drop', e => {
-  e.preventDefault();
-  if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-    completeFeed('paper', 'doll');
-  }
-});
+
+
 
 // Hidden Chest Easter Egg (100% functional, unadvertised in UI)
-function toggleDressForm(forceToSecond = null) {
-  const t = I18N[currentLang];
-  if (forceToSecond !== null) {
-    state.isSecondForm = forceToSecond;
-  } else {
-    state.isSecondForm = !state.isSecondForm;
-  }
-  if (state.isSecondForm) {
-    for (let i = 0; i < 16; i++) {
-      state.particles.push({
-        x: 510 + (Math.random() - 0.5) * 40,
-        y: 255 + (Math.random() - 0.5) * 30,
-        vx: (Math.random() - 0.5) * 6.0,
-        vy: -2.0 - Math.random() * 4.5,
-        life: 1.1,
-        char: i % 2 === 0 ? '🎀' : '✨'
-      });
-    }
-    setMvuExpr('shy');
-    showBubble(t.bubbleDressDrop);
-  } else {
-    setMvuExpr('neutral');
-    showBubble(t.bubbleDressFix);
-  }
-}
+function toggleDressForm() { state.isSecondForm = false; state.dressDropProgress = 0; }
 
-async function handleChestClick() {
-  const t = I18N[currentLang];
-  const now = performance.now();
-  state.chestBounceTimer = 0.65;
-  state.chestClickTimestamps = state.chestClickTimestamps.filter(ts => (now - ts) < 3600);
-  state.chestClickTimestamps.push(now);
-  const count = state.chestClickTimestamps.length;
+async function handleChestClick() {}
 
-  if (count >= 5) {
-    state.chestClickTimestamps = [];
-    triggerPowerPenaltyEasterEgg();
-    return;
-  }
-
-  fetch(BACKEND_BASE + '/api/open_antigravity', {method: 'POST'}).catch(() => {});
-
-  const roll = Math.random();
-  if (!state.isSecondForm && roll < 0.20) {
-    toggleDressForm(true);
-  } else if ( state.isSecondForm && count === 1 ) {
-    toggleDressForm(false);
-  } else {
-    setMvuExpr(count === 1 ? 'surprised' : 'angry');
-    showBubble(t.bubbleChestWarn(5 - count));
-  }
-}
-
-async function triggerPowerPenaltyEasterEgg() {
-  const t = I18N[currentLang];
-  if (!state.isSecondForm) {
-    toggleDressForm(true);
-  }
-  setMvuExpr('smug');
-  let modeLabel = currentLang === 'ja' ? 'シャットダウン' : 'Shutdown';
-  try {
-    await fetch(BACKEND_BASE + '/api/trigger_power', {method: 'POST'});
-  } catch (e) {}
-
-  const alertBox = document.getElementById('power-alert');
-  document.getElementById('power-title').textContent = t.powerTitle(modeLabel);
-  state.powerCountdown = 20;
-  document.getElementById('power-timer').textContent = state.powerCountdown + 's';
-  alertBox.style.display = 'flex';
-
-  if (state.powerInterval) clearInterval(state.powerInterval);
-  state.powerInterval = setInterval(() => {
-    state.powerCountdown--;
-    document.getElementById('power-timer').textContent = Math.max(0, state.powerCountdown) + 's';
-    if (state.powerCountdown <= 0) {
-      clearInterval(state.powerInterval);
-      state.powerInterval = null;
-    }
-  }, 1000);
-}
+async function triggerPowerPenaltyEasterEgg() {}
 
 async function cancelPowerPenalty() {
   const t = I18N[currentLang];
@@ -1322,21 +1284,14 @@ async function cancelPowerPenalty() {
 }
 
 canvas.addEventListener('click', e => {
-  const t = I18N[currentLang];
   const rect = canvas.getBoundingClientRect();
   const mx = (e.clientX - rect.left) * (1024 / rect.width);
   const my = (e.clientY - rect.top) * (1024 / rect.height);
-
-  if (mx >= 445 && mx <= 575 && my >= 185 && my <= 345) {
-    handleChestClick();
-  } else if (mx >= 355 && mx <= 505 && my >= 280 && my <= 505) {
-    triggerDollPlay();
-  } else if (mx >= 555 && my >= 180 && my <= 560) {
+  // In Free Trial Lite: clicking clothes/chest or doll has NO dress drop and NO shutdown! Only waving or blinking.
+  if (mx >= 555 && my >= 180 && my <= 560) {
     triggerWave();
   } else if (my < 185) {
     triggerBlink();
-    setMvuExpr('shy');
-    showBubble(t.bubbleHead);
   }
 });
 
@@ -2045,83 +2000,6 @@ async function playAudioBlobWithLipSync(blob) {
 // Initialize Default English UI
 setLanguage('en');
 checkBackend();
-
-// === FREE TRIAL LITE EDITION + STAR SUPPORT MODAL OVERRIDES ===
-function openStarModal() {
-  const m = document.getElementById('star-support-modal');
-  if (m) m.style.display = 'flex';
-}
-function closeStarModal() {
-  const m = document.getElementById('star-support-modal');
-  if (m) m.style.display = 'none';
-}
-
-function updateStarModalLang() {
-  const isJa = currentLang === 'ja';
-  const elEn = document.getElementById('modal-lang-en');
-  const elJa = document.getElementById('modal-lang-ja');
-  if (elEn) elEn.classList.toggle('active', !isJa);
-  if (elJa) elJa.classList.toggle('active', isJa);
-
-  const setTxt = (id, t) => { const e = document.getElementById(id); if (e) e.textContent = t; };
-  const setHtml = (id, h) => { const e = document.getElementById(id); if (e) e.innerHTML = h; };
-
-  setTxt('modal-badge', isJa ? '🎁 無料体験版 Lite (0 JPY)' : '🎁 Free Trial Lite Edition (0 JPY)');
-  setTxt('modal-title', isJa
-    ? '⭐ 無料の「Star / スキ」で作者を応援してくれませんか？'
-    : '⭐ Would You Give a Free Star to Support the Creator?');
-  setHtml('modal-msg', isJa
-    ? '「……この無料体験版を起動してくれてありがとう！多くの人がダウンロードするだけで通り過ぎてしまうの。もし気に入ったら、<b>GitHub の無料 ⭐Star</b> か <b>BOOTH の無料 ❤️スキ</b> をポチッと押して作者を応援してくれないかしら？」'
-    : '"...Since you\'re trying my Free Trial Lite for $0, would you mind taking 2 seconds to click a <b>free ⭐ Star on GitHub</b> or <b>❤️ Like (スキ) on BOOTH</b>? Most people download without liking—your free star means the world to my creator!"');
-  setTxt('modal-btn-gh', isJa
-    ? '⭐ GitHub で無料の Star を押して応援する（登録・料金0円）'
-    : '⭐ Give a Free Star on GitHub (100% Free Support!)');
-  setTxt('modal-btn-booth-heart', isJa
-    ? '❤️ BOOTH で無料の「スキ (ハート)」を押して応援する'
-    : '❤️ Click a Free Heart (スキ) on BOOTH (0 JPY Page)');
-  setTxt('modal-btn-full', isJa
-    ? '💎 完全版 (2,000円) を入手（全9種表情＋ファイル捕食＋隠し第2形態＋シャットダウン演出）'
-    : '💎 Unlock Full Edition (All 9 Expressions + File-Eating + 2nd Form — 2,000 JPY)');
-  setTxt('modal-btn-kofi', isJa
-    ? '🎨 あなたのイラストを同じ仕様のデスクトップマスコットに制作依頼 ($15〜$25)'
-    : '🎨 Commission Your Own Character as a Live2D Companion ($15~$25)');
-  setTxt('modal-btn-close', isJa
-    ? '▶️ 無料体験版をはじめる ->'
-    : '▶️ Continue to Free Trial Lite ->');
-
-  setTxt('btn-top-star', isJa ? '⭐ 無料Star / ❤️ スキで応援' : '⭐ Free Star / ❤️ Support');
-  setTxt('btn-top-full', isJa ? '💎 完全版 (2,000 JPY)' : '💎 Full Edition (2,000 JPY)');
-  setTxt('btn-locked-exprs', isJa ? '🔒 2〜9 表情差分 (完全版で解放)' : '🔒 2~9 Expressions (Full Edition)');
-}
-
-const origSetLanguage = setLanguage;
-setLanguage = function(lang) {
-  origSetLanguage(lang);
-  updateStarModalLang();
-};
-
-setMvuExpr = function(exprKey) {
-  currentMvuExpr = 'neutral';
-};
-toggleDressForm = function() {
-  state.isSecondForm = false;
-  state.dressDropProgress = 0.0;
-};
-handleChestClick = function() {};
-triggerPowerPenaltyEasterEgg = function() {};
-startFoodDrag = function() {};
-quickFeed = function() {};
-completeFeed = function() {};
-triggerDollPlay = function() {};
-
-I18N.en.badgeTitle = '✨ Nocturne 2D Live — Free Trial Lite (EN/JA)';
-I18N.ja.badgeTitle = '✨ ノクターン 2D Live — 無料体験版 Lite (EN/JA)';
-I18N.en.bubbleInit = '...Move your cursor and my eyes will follow you! Click [Wave Hello] or connect your LLM API & TTS on the right. If you like me, please click [⭐ Free Star] at the top to support my creator!';
-I18N.ja.bubbleInit = '……マウスを動かしてみて、視線があなたを追いかけるわ！「手を振る」やLLM API・TTS音声対話を試してみてね。気に入ったら上の「⭐無料Star / ❤️スキ」で作者を応援してね！';
-I18N.en.botInit = '...Hello! In this Free Trial Lite edition, I can track your cursor, wave hello, and chat with you via LLM API & TTS lip-sync. Please consider giving a free ⭐ Star on GitHub or ❤️ Heart on BOOTH!';
-I18N.ja.botInit = '……こんにちは！この無料体験版では、視線追従・手を振る・LLM API＆TTS音声リップシンク対話がお試しいただけます。よければ GitHub の ⭐Star や BOOTH の ❤️スキ で応援してね！';
-setLanguage(currentLang);
 </script>
-
 </body>
 </html>
